@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "220064721385",
+    "project_id": "donor-7d5d6",
+    "storage_bucket": "donor-7d5d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:220064721385:android:2b4f31f42a3e4ea3f5c378",
+        "android_client_info": {
+          "package_name": "com.example.feedonations"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2UGh2Ij9utC2ECgcKkp79IhlBugOHJkg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

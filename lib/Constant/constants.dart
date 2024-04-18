@@ -1,0 +1,23 @@
+const String NAME = 'NAME';
+const String TIMESTAMP = 'TIMESTAMP';
+const String TITLE = 'TITLE';
+const String DESCRIPTION = 'DESCRIPTION';
+const String EMAIL = 'EMAIL';
+const String CNIC = 'CNIC';
+const String JOBTITLE = 'JOBTITLE';
+const String IMAGEURL = 'IMAGEURL';
+const String JOBDESCRIPTION = 'JOBDESCRIPTION';
+const String HINTTEXT = 'HINTTEXT';
+const String MOBILE = 'MOBILE';
+const String ADDRESS = 'ADDRESS';
+const String FATHEROCCUPATION = 'FATHEROCCUPATION';
+const String REQUESTS = 'REQUESTS';
+// const String
+const String CONTROLLER = 'CONTROLLER';
+const String CATEGORY = 'CATEGORY';
+const String EDUCATION = "EDUCATION";
+const String MEDICAL = "MEDICAL";
+const String WISH = 'WISH';
+const String MORE = 'MORE';
+const String DONORREQUESTS = 'DONORREQUESTS';
+const String RECEIVERREQUESTS = 'RECEIVERREQUESTS';
