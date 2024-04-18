@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feedonations/Components/category_list.dart';
 import 'package:feedonations/Components/home_app_bar.dart';
@@ -19,6 +21,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<Stream<List<DocumentSnapshot>>> allReciverData = [];
   Stream<List<DocumentSnapshot>> fetchDonorData() {
     return FirebaseFirestore.instance
         .collection(REQUESTS)
@@ -28,14 +31,49 @@ class _HomeScreenState extends State<HomeScreen> {
         .map((snapshot) => snapshot.docs);
   }
 
-  Stream<List<DocumentSnapshot>> fetchRecieverData() {
+  Stream<List<DocumentSnapshot>> fetchAllReceiverData() {
+    // Create a stream controller to emit the combined data
+    StreamController<List<DocumentSnapshot>> controller =
+        StreamController<List<DocumentSnapshot>>();
+
+    // Fetch data from each collection and add it to the stream controller
+    fetchReceiverData(EDUCATION).listen((data) {
+      controller.add(data);
+    });
+    fetchReceiverData(MEDICAL).listen((data) {
+      controller.add(data);
+    });
+    fetchReceiverData(WISH).listen((data) {
+      controller.add(data);
+    });
+    fetchReceiverData(MORE).listen((data) {
+      controller.add(data);
+    });
+
+    // Close the stream controller when done
+    controller.close();
+
+    // Return the stream from the controller
+    return controller.stream;
+  }
+
+  Stream<List<DocumentSnapshot>> fetchReceiverData(String docId) {
     return FirebaseFirestore.instance
         .collection(REQUESTS)
-        .doc(EDUCATION)
+        .doc(docId)
         .collection(RECEIVERREQUESTS)
         .snapshots()
         .map((snapshot) => snapshot.docs);
   }
+
+  // Stream<List<DocumentSnapshot>> fetchRecieverData() {
+  //   return FirebaseFirestore.instance
+  //       .collection(REQUESTS)
+  //       .doc(EDUCATION)
+  //       .collection(RECEIVERREQUESTS)
+  //       .snapshots()
+  //       .map((snapshot) => snapshot.docs);
+  // }
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -48,7 +86,10 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     fetchAllData();
     fetchDonorData();
-    fetchRecieverData();
+    allReciverData.add(fetchReceiverData(EDUCATION));
+    allReciverData.add(fetchReceiverData(MEDICAL));
+    allReciverData.add(fetchReceiverData(WISH));
+    allReciverData.add(fetchReceiverData(MORE));
   }
 
   ///Recent Data From university Collection
@@ -106,12 +147,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 TopAppBar(),
                 SearchCardField(size: size),
                 CategoriesList(),
+                // ProfilesList(
+                //   stream: fetchDonorData(),
+                //   title: 'Product Profiles',
+                // ),
                 ProfilesList(
-                  stream: fetchDonorData(),
-                  title: 'Product Profiles',
-                ),
-                ProfilesList(
-                  stream: fetchRecieverData(),
+                  stream: allReciverData,
                   title: 'Receiver Profiles',
                 ),
                 Container(
@@ -128,6 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: const Color(0x33000000),
                       borderRadius: BorderRadius.circular(10 * 1),
                       image: DecorationImage(
+                        fit: BoxFit.cover,
                         image: AssetImage(AppImages.appLogo),
                       ),
                     ),

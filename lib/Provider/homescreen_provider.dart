@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feedonations/Constant/bottom_navigation.dart';
 import 'package:feedonations/Constant/constants.dart';
+import 'package:feedonations/Constant/firebas_const.dart';
 import 'package:feedonations/Constant/snackbar.dart';
 import 'package:feedonations/screen/app_nav_bar.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -196,7 +197,7 @@ class HomeScreenProvider with ChangeNotifier {
           .doc(category)
           .collection(DONORREQUESTS)
           .add(newUserData);
-      final recentPost = _firestore.collection("RecentPost");
+      final recentPost = _firestore.collection(RECENT_POST);
       if (sendDataToAnotherCollections == true) {
         recentPost.add(newUserData);
       }

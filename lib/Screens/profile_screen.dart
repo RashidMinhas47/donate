@@ -1,4 +1,5 @@
 import 'package:feedonations/Screens/sign_up.dart';
+import 'package:feedonations/screen/auth_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -180,7 +181,7 @@ class _PorfileScreenState extends State<PorfileScreen> {
               onPressed: () {
                 FirebaseAuth.instance.signOut();
                 RoutingPage.gotoNextPage(
-                    context: context, gotoNextPage: const SignUpScreen());
+                    context: context, gotoNextPage: AuthScreen());
               },
               child: Text(
                 'Yes',

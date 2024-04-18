@@ -21,3 +21,7 @@ const String WISH = 'WISH';
 const String MORE = 'MORE';
 const String DONORREQUESTS = 'DONORREQUESTS';
 const String RECEIVERREQUESTS = 'RECEIVERREQUESTS';
+const String USERS = 'USERS';
+const String UID = 'UID';
+const String IMAGE_URL = 'IMAGE_URL';
+const String RECENT_POST = 'RECENT_POST';

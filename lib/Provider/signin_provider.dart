@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:feedonations/Constant/constants.dart';
+import 'package:feedonations/Constant/firebas_const.dart';
 import 'package:feedonations/Constant/snackbar.dart';
 import 'package:feedonations/Routes/routes.dart';
 import 'package:feedonations/screen/app_nav_bar.dart';
@@ -30,9 +32,9 @@ class SignInProviderAuth with ChangeNotifier {
         userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
             email: email.text, password: password.text);
         FirebaseAuth.instance.currentUser;
-        final userCollection = FirebaseFirestore.instance.collection('users');
+        final userCollection = FirebaseFirestore.instance.collection(USERS);
         QuerySnapshot querySnapshot =
-            await userCollection.where('uid', isEqualTo: uid).get();
+            await userCollection.where(UID, isEqualTo: uid).get();
         if (querySnapshot.docs.isEmpty) {
         } else if (querySnapshot.docs.isNotEmpty) {
           AppSnackBar.snackBar(context, "Welcome");

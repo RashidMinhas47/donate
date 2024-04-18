@@ -30,6 +30,12 @@ class _ReceiverFormState extends State<ReceiverForm> {
     TextEditingController(),
     TextEditingController(),
   ];
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    Provider.of<HomeScreenProvider>(context).dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -194,21 +200,21 @@ class _ReceiverFormState extends State<ReceiverForm> {
                                 ),
                               ),
 
-                              Row(
-                                children: [
-                                  for (int index = 0; index < 3; index++)
-                                    Container(
-                                      // group1000003928Mhf (28:14)
-                                      width: 90.6 * 1,
-                                      height: 90.66 * 1,
-                                      child: Icon(
-                                        Icons.image,
-                                        color: Color.fromARGB(255, 0, 59, 107),
-                                        size: 90,
-                                      ),
-                                    ),
-                                ],
-                              ),
+                              // Row(
+                              //   children: [
+                              //     for (int index = 0; index < 3; index++)
+                              //       Container(
+                              //         // group1000003928Mhf (28:14)
+                              //         width: 90.6 * 1,
+                              //         height: 90.66 * 1,
+                              //         child: Icon(
+                              //           Icons.image,
+                              //           color: Color.fromARGB(255, 0, 59, 107),
+                              //           size: 90,
+                              //         ),
+                              //       ),
+                              //   ],
+                              // ),
                             ],
                           ),
                         ),
