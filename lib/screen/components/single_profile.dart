@@ -4,6 +4,7 @@ import 'package:feedonations/Constant/constants.dart';
 import 'package:feedonations/Utilis/images.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,7 +17,10 @@ class SingleProfile extends StatelessWidget {
   const SingleProfile({
     super.key,
     required this.title,
-    required this.stream1, required this.stream2, required this.stream3, required this.stream4,
+    required this.stream1,
+    required this.stream2,
+    required this.stream3,
+    required this.stream4,
   });
 
   final String title;
@@ -46,154 +50,89 @@ class SingleProfile extends StatelessWidget {
             ),
           ),
           SizedBox(
+            height: 88.14,
             width: double.maxFinite,
-            height: 88.15 * 1,
-            child:
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
               children: [
-               stream1.first.isBlank! ?SizedBox(height: 0,width: 0,): Container(
-                    height: 88.14,
-                    width: 88.14,
-                    child: StreamBuilder<List<DocumentSnapshot>>(
-                      stream: stream1,
-                      builder: (BuildContext context,
-                          AsyncSnapshot<List<DocumentSnapshot>> snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const CircularProgressIndicator();
-                        }else if(snapshot.data!.isEmpty|| snapshot.data.isBlank!){
-                          return SizedBox.shrink();
-                        }  else {
-                          if (snapshot.hasError) {
-                            return Text('Error: ${snapshot.error}');
-                          } else {
-                            return SizedBox(
-                              width: double.infinity,
-                              child: ListView(
-                                scrollDirection: Axis.horizontal,
-                                children: snapshot.data!.map((docSnapshot) {
-                                  Map<String, dynamic> userData = docSnapshot
-                                      .data() as Map<String, dynamic>;
-                                  return ProfileCard(
-                                    imgURL: userData[IMAGEURL][0],
-                                    label: userData[CATEGORY],
-                                  );
-                                }).toList(),
-                              ),
-                            );
-                          }
-                        }
-                      },
-                    ),
-                  ),
-               // stream2.first.isBlank! ?SizedBox.shrink(): Container(
-               //      height: 88.14,
-               //      width: 88.14,
-               //      child: StreamBuilder<List<DocumentSnapshot>>(
-               //        stream: stream2,
-               //        builder: (BuildContext context,
-               //            AsyncSnapshot<List<DocumentSnapshot>> snapshot) {
-               //          if (snapshot.connectionState ==
-               //              ConnectionState.waiting) {
-               //            return const CircularProgressIndicator();
-               //          } else {
-               //            if (snapshot.hasError) {
-               //              return Text('Error: ${snapshot.error}');
-               //            } else {
-               //              return SizedBox(
-               //                width: double.infinity,
-               //                child: ListView(
-               //                  scrollDirection: Axis.horizontal,
-               //                  children: snapshot.data!.map((docSnapshot) {
-               //                    Map<String, dynamic> userData = docSnapshot
-               //                        .data() as Map<String, dynamic>;
-               //                    return ProfileCard(
-               //                      imgURL: userData[IMAGEURL][0],
-               //                      label: userData[CATEGORY],
-               //                    );
-               //                  }).toList(),
-               //                ),
-               //              );
-               //            }
-               //          }
-               //        },
-               //      ),
-               //    ),
-               // stream3.first.isBlank! ?SizedBox.shrink(): Container(
-               //      height: 88.14,
-               //      width: 88.14,
-               //      child: StreamBuilder<List<DocumentSnapshot>>(
-               //        stream: stream3,
-               //        builder: (BuildContext context,
-               //            AsyncSnapshot<List<DocumentSnapshot>> snapshot) {
-               //          if (snapshot.connectionState ==
-               //              ConnectionState.waiting) {
-               //            return const CircularProgressIndicator();
-               //          } else {
-               //            if (snapshot.hasError) {
-               //              return Text('Error: ${snapshot.error}');
-               //            } else {
-               //              return SizedBox(
-               //                width: double.infinity,
-               //                child: ListView(
-               //                  scrollDirection: Axis.horizontal,
-               //                  children: snapshot.data!.map((docSnapshot) {
-               //                    Map<String, dynamic> userData = docSnapshot
-               //                        .data() as Map<String, dynamic>;
-               //                    return ProfileCard(
-               //                      imgURL: userData[IMAGEURL][0],
-               //                      label: userData[CATEGORY],
-               //                    );
-               //                  }).toList(),
-               //                ),
-               //              );
-               //            }
-               //          }
-               //        },
-               //      ),
-               //    ),
-               //
-               stream4.first.isBlank! ?SizedBox.shrink(): Container(
-                    height: 88.14,
-                    width: 88.14,
-                    child: StreamBuilder<List<DocumentSnapshot>>(
-                      stream: stream4,
-                      builder: (BuildContext context,
-                          AsyncSnapshot<List<DocumentSnapshot>> snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const CircularProgressIndicator();
-                        } else {
-                          if (snapshot.hasError) {
-                            return Text('Error: ${snapshot.error}');
-                          } else {
-                            return SizedBox(
-                              width: double.infinity,
-                              child: ListView(
-                                scrollDirection: Axis.horizontal,
-                                children: snapshot.data!.map((docSnapshot) {
-                                  Map<String, dynamic> userData = docSnapshot
-                                      .data() as Map<String, dynamic>;
-                                  return ProfileCard(
-                                    imgURL: userData[IMAGEURL][0],
-                                    label: userData[CATEGORY],
-                                  );
-                                }).toList(),
-                              ),
-                            );
-                          }
-                        }
-                      },
-                    ),
-                  ),
+                CardData(stream: stream1),
+                CardData(stream: stream2),
+                CardData(stream: stream3),
+                CardData(stream: stream4),
               ],
             ),
-
-          ),
+          )
+          // Container(
+          //   margin: EdgeInsets.all(2.0),
+          // height:   88.4,
+          //   width: double.maxFinite,
+          //   child: ListView.builder(itemBuilder: (context,index){
+          //     List<Stream<List<DocumentSnapshot<Object?>>>>  listOfStream = [
+          //       stream1,
+          //       stream2,
+          //       stream3,
+          //       stream4,
+          //     ];
+          //   return  CardData(stream: listOfStream[index],);
+          //   }),
+          // ),
         ],
       ),
+    );
+  }
+}
+
+class CardData extends StatelessWidget {
+  const CardData({
+    super.key,
+    required this.stream,
+  });
+
+  final Stream<List<DocumentSnapshot<Object?>>> stream;
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<List<DocumentSnapshot>>(
+      stream: stream,
+      builder: (BuildContext context,
+          AsyncSnapshot<List<DocumentSnapshot>> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        } else if (snapshot.data!.isEmpty ||
+            snapshot.data.isBlank!) {
+          return SizedBox.shrink();
+        } else {
+          if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          } else {
+            // return SizedBox(
+            //   height: 88.14,
+            //   width: 100.14,
+            //   child: ListView(
+            //     scrollDirection: Axis.horizontal,
+            //     children: snapshot.data!.map((docSnapshot) {
+            //       Map<String, dynamic> userData = docSnapshot
+            //           .data() as Map<String, dynamic>;
+            final userData = snapshot.data;
+            Map<String, dynamic> cardData =
+                userData!.first.data() as Map<String, dynamic>;
+            //                     snapshot.data!.map((docSnapshot) {
+            // userData = docSnapshot
+            //     .data() as Map<String, dynamic>;});
+            return SizedBox(
+              height: 88.14,
+              width: 100.14,
+              child: ProfileCard(
+                imgURL: cardData[IMAGEURL][0],
+                label: cardData[CATEGORY],
+              ),
+              // );
+              //   }).toList(),
+              // ),
+            );
+          }
+        }
+      },
     );
   }
 }

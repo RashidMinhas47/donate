@@ -299,7 +299,7 @@ class ContactUsElevatedCard extends StatelessWidget {
                   // wW5 (151:32)
                   margin: EdgeInsets.fromLTRB(0 * 1, 0 * 1, 0 * 1, 1 * 1),
                   child: Text(
-                    '+923554938188',
+                    '+923109436724',
                     textAlign: TextAlign.center,
                     style: GoogleFonts.inter(
                       fontSize: 16 * 1,
@@ -348,7 +348,7 @@ class ContactUsElevatedCard extends StatelessWidget {
                   // jahangeerali97252gmailcomEtV (151:69)
                   margin: EdgeInsets.fromLTRB(0 * 1, 0 * 1, 0 * 1, 1 * 1),
                   child: Text(
-                    'Jahangeerali97252gmail.com',
+                    'rashidhussain@gmail.com',
                     textAlign: TextAlign.center,
                     style: GoogleFonts.inter(
                       fontSize: 16 * 1,

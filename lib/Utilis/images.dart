@@ -1,5 +1,7 @@
 class AppImages {
   static String appLogo = ("assets/Images/Sky logo.png");
+  static String donationImage = ("assets/Images/donations.png");
+
   String googleLogo = ("assets/Images/icon.png");
   String walletIcon = ("assets/Images/wallet.png");
   String profileImg = ("assets/Images/profile.png");
