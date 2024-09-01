@@ -15,7 +15,7 @@ class ProductDetails2 extends StatelessWidget {
         width: double.infinity,
         height: 926 * 1,
         decoration: BoxDecoration(
-          color: Color(0xffffffff),
+          color: const Color(0xffffffff),
           borderRadius: BorderRadius.circular(30 * 1),
         ),
         child: Stack(
@@ -40,7 +40,7 @@ class ProductDetails2 extends StatelessWidget {
               // frame1000003919Aay (131:1544)
               left: 23.6082763672 * 1,
               top: 12.8721923828 * 1,
-              child: Container(
+              child: SizedBox(
                 width: 380 * 1,
                 height: 17 * 1,
                 child: Container(

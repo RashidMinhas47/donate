@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:jazzcash_flutter/jazzcash_flutter.dart';
 import 'package:provider/provider.dart';
 
 class PaymentProvider with ChangeNotifier {
@@ -73,46 +72,46 @@ class PaymentProvider with ChangeNotifier {
     //PaymentProvider paymentProvider = Provider.of<PaymentProvider>(context);
     // print("clicked on Product ${element.name}");
 
-    try {
-      JazzCashFlutter jazzCashFlutter = JazzCashFlutter(
-        merchantId: merchantID,
-        merchantPassword: merchantPassword,
-        integritySalt: integritySalt,
-        isSandbox: true,
-      );
+
+      // JazzCashFlutter jazzCashFlutter = JazzCashFlutter(
+      //   merchantId: merchantID,
+      //   merchantPassword: merchantPassword,
+      //   integritySalt: integritySalt,
+      //   isSandbox: true,
+      // );
 
       DateTime date = DateTime.now();
 
-      JazzCashPaymentDataModelV1 paymentDataModelV1 =
-          JazzCashPaymentDataModelV1(
-        ppAmount: paymentController.text,
-        ppBillReference:
-            'refbill${date.year}${date.month}${date.day}${date.hour}${date.millisecond}',
-        ppDescription: 'Donations',
-        ppMerchantID: merchantID,
-        ppPassword: merchantPassword,
-        ppReturnURL: transactionUrl,
-      );
+      // JazzCashPaymentDataModelV1 paymentDataModelV1 =
+      //     JazzCashPaymentDataModelV1(
+      //   ppAmount: paymentController.text,
+      //   ppBillReference:
+      //       'refbill${date.year}${date.month}${date.day}${date.hour}${date.millisecond}',
+      //   ppDescription: 'Donations',
+      //   ppMerchantID: merchantID,
+      //   ppPassword: merchantPassword,
+      //   ppReturnURL: transactionUrl,
+      // );
 
-      jazzCashFlutter
-          .startPayment(
-              paymentDataModelV1: paymentDataModelV1, context: context)
-          .then((_response) {
-        print("response from jazzcash $_response");
+      // jazzCashFlutter
+      //     .startPayment(
+      //         paymentDataModelV1: paymentDataModelV1, context: context)
+      //     .then((_response) {
+      //   print("response from jazzcash $_response");
 
         // _checkIfPaymentSuccessfull(_response, element, context).then((res) {
         //   // res is the response you returned from your return url;
         //   return res;
         // });
-
-        notifyListeners();
-      });
-    } catch (err) {
-      print("Error in payment $err");
-      // CommonFunctions.CommonToast(
-      //   message: "Error in payment $err",
-      // );
-      return false;
-    }
+    //
+    //     notifyListeners();
+    //   });
+    // } catch (err) {
+    //   print("Error in payment $err");
+    //   // CommonFunctions.CommonToast(
+    //   //   message: "Error in payment $err",
+    //   // );
+    //   return false;
+    // }
   }
 }

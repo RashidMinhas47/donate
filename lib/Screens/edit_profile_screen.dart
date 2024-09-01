@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:feedonations/Components/home_app_bar.dart';
+import 'package:feedonations/Constant/color_scheme.dart';
 import 'package:feedonations/Constant/sized_box.dart';
 import 'package:feedonations/Screens/sign_up.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -138,7 +140,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       profileName: profileName, context: context);
                   profileScreenProvider.sendDateToFirebase(selectedDate!);
                 },
-                color: Colors.red,
+                color: kPrimaryColor,
                 title: "Save Changes"),
             // StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
             //

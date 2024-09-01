@@ -97,6 +97,7 @@ class _DonorFormState extends State<DonorForm> {
       );
     }
 
+
     return SafeArea(
       child: Scaffold(
           body: Stack(
@@ -105,13 +106,13 @@ class _DonorFormState extends State<DonorForm> {
             // iphone14plus3xhT (16:75)
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Color(0xffffffff),
+              color:const Color(0xffffffff),
               borderRadius: BorderRadius.circular(30 * 1),
             ),
             child: SingleChildScrollView(
               child: Column(children: [
                 Padding(
-                  padding: EdgeInsets.only(top: 40, bottom: 20),
+                  padding:const EdgeInsets.only(top: 40, bottom: 20),
                   child: SizedBox(
                     width: 150 * 1,
                     height: 30 * 1,
@@ -140,12 +141,13 @@ class _DonorFormState extends State<DonorForm> {
                 ),
                 Container(
                   // group10000039338K7 (28:11)
-                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  margin:const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
+
                         // incomecertificatevoucher3ws (28:13)
                         child: Text(
                           'Upload Product Pictures',
@@ -181,35 +183,52 @@ class _DonorFormState extends State<DonorForm> {
                       //   ),
                       // ),
                       Container(
-                        height: 300,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        alignment: Alignment.center,
+                        height: homeScreenProvider.imageFiles.isEmpty? 40 :170,
+                        child: Stack(
+                          alignment: Alignment.center,
                           children: [
-                            ElevatedButton(
+
+                            GridView.builder(
+                              gridDelegate:
+                                const  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount:
+                                    3, // Adjust the number of images per row as needed
+                                mainAxisSpacing: 10.0,
+                                crossAxisSpacing: 10.0,
+                              ),
+                              itemCount: homeScreenProvider.imageFiles.length,
+                              itemBuilder: (context, index) {
+                                if(homeScreenProvider.imageFiles.isEmpty){
+                                 return const SizedBox.shrink();
+                                }else {
+                                return ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.file(
+                                    homeScreenProvider.imageFiles[index],
+                                    fit: BoxFit.cover,
+
+                                  ),
+                                );}
+                              },
+                            ),
+                           homeScreenProvider.imageFiles.length== 1? IconButton(
+
                               onPressed: () async {
                                 await homeScreenProvider.selectMultiImages(
                                     ImageSource.gallery, context);
                               },
-                              child: Text('Select Images'),
-                            ),
-                            SizedBox(height: 20),
-                            Expanded(
-                              child: GridView.builder(
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount:
-                                      3, // Adjust the number of images per row as needed
-                                  mainAxisSpacing: 10.0,
-                                  crossAxisSpacing: 10.0,
-                                ),
-                                itemCount: homeScreenProvider.imageFiles.length,
-                                itemBuilder: (context, index) {
-                                  return Image.file(
-                                    homeScreenProvider.imageFiles[index],
-                                    fit: BoxFit.cover,
-                                  );
-                                },
+                              icon:const Icon(Icons.add_a_photo,color: kPrimaryColor,size: 40,),
+                            ): ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: kPrimaryColor,
+                                fixedSize:const Size(140,30,),
                               ),
+                              onPressed: () async {
+                                await homeScreenProvider.selectMultiImages(
+                                    ImageSource.gallery, context);
+                              },
+                              child: Text('Select Images',style: GoogleFonts.poppins(color: Colors.white),),
                             ),
                           ],
                         ),

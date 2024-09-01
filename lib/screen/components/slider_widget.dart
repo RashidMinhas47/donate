@@ -22,14 +22,15 @@ class SliderWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10 * 1),
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage(AppImages.appLogo),
+            filterQuality: FilterQuality.high,
+
+            image: AssetImage(AppImages.donationImage),
           ),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              // wecanthelpeveryonebuteveryonec (13:257)
               margin: const EdgeInsets.fromLTRB(
                   0 * 1, 0 * 1, 0 * 1, 10.47 * 1),
               constraints: const BoxConstraints(

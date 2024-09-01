@@ -23,10 +23,11 @@ class ProfileCard extends StatelessWidget {
             // image1Dg1 (11:72)
             left: 0 * 1,
             top: 0 * 1,
-            child: Align(
-              child: SizedBox(
-                width: 82.36 * 1,
-                height: 88.15 * 1,
+            child: SizedBox(
+              width: 82.36 * 1,
+              height: 88.15 * 1,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(4+2),
                 child: Image.network(
                   imgURL,
                   fit: BoxFit.cover,
@@ -42,7 +43,7 @@ class ProfileCard extends StatelessWidget {
               width: 82.55 * 1,
               height: 18.89 * 1,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(2.0987854004 * 1),
+                borderRadius: BorderRadius.circular(4+2),
                 gradient: const LinearGradient(
                   begin: Alignment(-0.213, 0.94),
                   end: Alignment(-0.211, -1),

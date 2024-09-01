@@ -87,7 +87,7 @@ class HelpScreen extends StatelessWidget {
                             width: 28.86 * 1,
                             height: 28.86 * 1,
                             child: SvgPicture.asset(
-                              AppSvg.linkdlnIcon,
+                              AppSvg.linkdelnIcon,
                               width: 28.86 * 1,
                               height: 28.86 * 1,
                             ),

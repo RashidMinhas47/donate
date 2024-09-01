@@ -32,17 +32,16 @@ class _BottomNavigationExampleState extends State<BottomNavigationExample> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = [
-    const HomePageScreen(),
     const PostRequestScreen(),
-    const PorfileScreen(),
+    const ProfileScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        int _currentIndex = DefaultTabController.of(context).index;
-        if (_currentIndex == 0) {
+        int currentIndex = DefaultTabController.of(context).index;
+        if (currentIndex == 0) {
           return Future.value(true);
         } else {
           DefaultTabController.of(context).animateTo(0);

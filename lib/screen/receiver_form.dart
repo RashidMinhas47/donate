@@ -93,7 +93,7 @@ class _ReceiverFormState extends State<ReceiverForm> {
               padding: const EdgeInsets.fromLTRB(0 * 1, 0 * 1, 0 * 1, 0.2 * 1),
               width: double.infinity,
               decoration: BoxDecoration(
-                color: Color(0xffffffff),
+                color: const Color(0xffffffff),
                 borderRadius: BorderRadius.circular(30 * 1),
               ),
               child: SingleChildScrollView(
@@ -104,12 +104,12 @@ class _ReceiverFormState extends State<ReceiverForm> {
                       // iphone14plus3xhT (16:75)
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: Color(0xffffffff),
+                        color: const Color(0xffffffff),
                         borderRadius: BorderRadius.circular(30 * 1),
                       ),
                       child: Column(children: [
                         Padding(
-                          padding: EdgeInsets.only(top: 40, bottom: 20),
+                          padding: const EdgeInsets.only(top: 40, bottom: 20),
                           child: SizedBox(
                             height: 30 * 1,
                             child: Text(
@@ -123,10 +123,10 @@ class _ReceiverFormState extends State<ReceiverForm> {
                             ),
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           height: 730,
                           child: ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                             itemCount: receiverFormData.length,
                             itemBuilder: (context, index) => DRFormTextField(
                               title: receiverFormData[index][TITLE],
@@ -138,22 +138,19 @@ class _ReceiverFormState extends State<ReceiverForm> {
                         ),
                         Container(
                           // group10000039338K7 (28:11)
-                          margin: EdgeInsets.symmetric(
+                          margin: const EdgeInsets.symmetric(
                               horizontal: 20, vertical: 10),
                           width: double.infinity,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
-                                // incomecertificatevoucher3ws (28:13)
-                                child: Text(
-                                  'Income certificate & voucher',
-                                  style: GoogleFonts.quicksand(
-                                      fontSize: 20 * 1,
-                                      fontWeight: FontWeight.w600,
-                                      height: 1.25 * 1 / 1,
-                                      color: kTitleColor),
-                                ),
+                              Text(
+                                'Income certificate & voucher',
+                                style: GoogleFonts.quicksand(
+                                    fontSize: 20 * 1,
+                                    fontWeight: FontWeight.w600,
+                                    height: 1.25 * 1 / 1,
+                                    color: kTitleColor),
                               ),
                               // Row(
                               //   children: [
@@ -162,42 +159,53 @@ class _ReceiverFormState extends State<ReceiverForm> {
                               //     Icon(Icons.image),
                               //   ],
                               // )
-                              Container(
-                                height: 300,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    ElevatedButton(
-                                      onPressed: () async {
-                                        await homeScreenProvider
-                                            .selectMultiImagesReceiver(
-                                                ImageSource.gallery, context);
-                                      },
-                                      child: Text('Select Images'),
-                                    ),
-                                    SizedBox(height: 20),
-                                    Expanded(
-                                      child: GridView.builder(
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount:
-                                              3, // Adjust the number of images per row as needed
-                                          mainAxisSpacing: 10.0,
-                                          crossAxisSpacing: 10.0,
-                                        ),
-                                        itemCount: homeScreenProvider
-                                            .imageFiles.length,
-                                        itemBuilder: (context, index) {
-                                          return Image.file(
-                                            homeScreenProvider
-                                                .imageFiles[index],
-                                            fit: BoxFit.cover,
-                                          );
-                                        },
+                              Stack(
+                                alignment: Alignment.center,
+                                children: [
+
+                                  Container(
+                                    height: homeScreenProvider.imageFiles.isEmpty? 0 :150,
+
+                                    child: GridView.builder(
+                                      padding: EdgeInsets.all(0),
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount:
+                                            3, // Adjust the number of images per row as needed
+                                        mainAxisSpacing: 10.0,
+                                        crossAxisSpacing: 10.0,
                                       ),
+                                      itemCount: homeScreenProvider
+                                          .imageFiles.length,
+                                      itemBuilder: (context, index) {
+                                       if(homeScreenProvider.imageFiles.isNotEmpty){
+                                         return Image.file(
+                                           homeScreenProvider
+                                               .imageFiles[index],
+                                           fit: BoxFit.cover,
+                                         );
+                                       }else{
+                                         return const SizedBox.shrink();
+                                       }
+                                      },
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                  homeScreenProvider.imageFiles.length== 1? IconButton(
+
+                                    onPressed: () async {
+                                      await homeScreenProvider.selectMultiImages(
+                                          ImageSource.gallery, context);
+                                    },
+                                    icon:const Icon(Icons.add_a_photo,color: kPrimaryColor,size: 40,),
+                                  ):     ElevatedButton(
+                                    onPressed: () async {
+                                      await homeScreenProvider
+                                          .selectMultiImagesReceiver(
+                                          ImageSource.gallery, context);
+                                    },
+                                    child: Text('Select Images'),
+                                  ),
+                                ],
                               ),
 
                               // Row(

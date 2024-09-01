@@ -4,10 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 class TopAppBarWithTitle extends StatelessWidget {
   const TopAppBarWithTitle({super.key, required this.title});
   final String title;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 30, bottom: 10),
+      margin: EdgeInsets.only(top: 30, bottom: 20),
       // autogrouptkhsh6d (TgBGYzhHjcEHXjiXt3Tkhs)
       width: double.infinity,
       child: Container(

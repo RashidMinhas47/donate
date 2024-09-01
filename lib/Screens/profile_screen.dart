@@ -1,3 +1,4 @@
+import 'package:feedonations/Components/top_app_bar.dart';
 import 'package:feedonations/Screens/sign_up.dart';
 import 'package:feedonations/screen/auth_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,33 +12,23 @@ import '../Utilis/app_colors.dart';
 import 'Donations.dart';
 import 'edit_profile_screen.dart';
 
-class PorfileScreen extends StatefulWidget {
-  const PorfileScreen({Key? key}) : super(key: key);
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
 
   @override
-  State<PorfileScreen> createState() => _PorfileScreenState();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _PorfileScreenState extends State<PorfileScreen> {
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 1,
-        centerTitle: true,
-        title: Text(
-          "Settings",
-          style: GoogleFonts.actor(
-              fontSize: 22, color: Colors.black, fontWeight: FontWeight.w800),
-        ),
-        backgroundColor: Colors.transparent,
-      ),
+
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const ProfileText(
-              text: "Account",
-            ),
+           const  TopAppBarWithTitle(title: "Settings"),
+          const SizedBox(height: 10,),
             Container(
                 margin: const EdgeInsets.symmetric(horizontal: 35),
                 height: 180,
@@ -46,33 +37,30 @@ class _PorfileScreenState extends State<PorfileScreen> {
                   color: AppColor.profileContainerBgColor,
                   borderRadius: BorderRadius.circular(6),
                 ),
-                child: Column(
-                  children: [
-                    ProfileDetails(
-                      iconData: Icons.person,
-                      text: 'Edit Profile',
-                      onTap: () {
-                        RoutingPage.gotoNextPage(
-                            context: context,
-                            gotoNextPage: const EditProfileScreen());
-                      },
-                    ),
-                    ProfileDetails(
-                      iconData: Icons.security,
-                      text: "Security",
-                      onTap: () {},
-                    ),
-                    ProfileDetails(
-                      iconData: Icons.notifications,
-                      text: "Notifications",
-                      onTap: () {},
-                    ),
-                    ProfileDetails(
-                      iconData: Icons.lock,
-                      text: "Privacy",
-                      onTap: () {},
-                    ),
-                  ],
+                child: Container(
+                  child: Column(
+                    children: [
+                      ProfileDetails(
+                        iconData: Icons.person,
+                        text: 'Edit Profile',
+                        onTap: () {
+                          RoutingPage.gotoNextPage(
+                              context: context,
+                              gotoNextPage: const EditProfileScreen());
+                        },
+                      ),
+                      ProfileDetails(
+                        iconData: Icons.security,
+                        text: "Security",
+                        onTap: () {},
+                      ),
+                      ProfileDetails(
+                        iconData: Icons.notifications,
+                        text: "Notifications",
+                        onTap: () {},
+                      ),
+                    ],
+                  ),
                 )),
             const ProfileText(
               text: 'Support And About',
@@ -97,29 +85,6 @@ class _PorfileScreenState extends State<PorfileScreen> {
                       text: "Help and Support",
                       onTap: () {},
                     ),
-                    ProfileDetails(
-                      iconData: Icons.policy,
-                      text: "Terms and Policy",
-                      onTap: () {},
-                    ),
-                    Consumer<HomeScreenProvider>(
-                        builder: (context, notifier, _) {
-                      return Row(
-                        children: [
-                          Expanded(
-                            child: SwitchListTile(
-                              title: const Text("Recent Req"),
-                              value: notifier.sendDataToAnotherCollections,
-                              onChanged: (value) {
-                                setState(() {
-                                  notifier.sendDataToAnotherCollections = value;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      );
-                    })
                   ],
                 )),
             const ProfileText(
@@ -135,16 +100,6 @@ class _PorfileScreenState extends State<PorfileScreen> {
                 ),
                 child: Column(
                   children: [
-                    ProfileDetails(
-                      iconData: Icons.manage_accounts,
-                      text: "Add account",
-                      onTap: () {
-                        RoutingPage.gotoNextPage(
-                          context: context,
-                          gotoNextPage: const SignUpScreen(),
-                        );
-                      },
-                    ),
                     ProfileDetails(
                       iconData: Icons.login_outlined,
                       text: "LogOut",
@@ -165,8 +120,8 @@ class _PorfileScreenState extends State<PorfileScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Log Out Confirmation'),
-          content: const Text('Are you sure you want to log out?'),
+          title:  Text('Log Out Confirmation',style: GoogleFonts.poppins(),),
+          content:  Text('Are you sure you want to log out?',style: GoogleFonts.poppins(),),
           actions: <Widget>[
             TextButton(
               onPressed: () {
@@ -174,14 +129,14 @@ class _PorfileScreenState extends State<PorfileScreen> {
               },
               child: Text(
                 'No',
-                style: GoogleFonts.actor(fontSize: 17, color: Colors.black),
+                style: GoogleFonts.poppins(fontSize: 17, color: Colors.black),
               ),
             ),
             TextButton(
               onPressed: () {
                 FirebaseAuth.instance.signOut();
                 RoutingPage.gotoNextPage(
-                    context: context, gotoNextPage: AuthScreen());
+                    context: context, gotoNextPage:const AuthScreen());
               },
               child: Text(
                 'Yes',
@@ -195,11 +150,28 @@ class _PorfileScreenState extends State<PorfileScreen> {
   }
 }
 
+class ProfileDetails extends StatelessWidget {
+  const ProfileDetails({super.key, required this.iconData, required this.text, required this.onTap});
+  final IconData iconData;
+  final String text;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(iconData),
+     title:  Text(text,style: GoogleFonts.poppins(),),
+      onTap: onTap,
+
+    );
+  }
+}
+
 class ProfileText extends StatelessWidget {
   const ProfileText({super.key, required this.text});
   final String text;
   @override
   Widget build(BuildContext context) {
-    return Text(text);
+    return Text(text,style: GoogleFonts.poppins(),);
   }
 }

@@ -1,6 +1,10 @@
 class AppImages {
   static String appLogo = ("assets/Images/Sky logo.png");
   static String donationImage = ("assets/Images/donations.png");
+  static String rashidHussain = ("assets/Images/rashid_hussain.jpg");
+  static String rashidMinhas = ("assets/Images/rashid_minhas.jpg");
+  static String jahangirAli = ("assets/Images/jahangir_ali.jpg");
+  static String janSons = ("assets/Images/jan_sons.jpg");
 
   String googleLogo = ("assets/Images/icon.png");
   String walletIcon = ("assets/Images/wallet.png");
@@ -25,14 +29,16 @@ class AppSvg {
   static String categoryIcon = ("assets/svg/Category.svg");
   static String educationIcon = ("assets/svg/education.svg");
   static String heartIcon = ("assets/svg/heart.svg");
-  static String linkdlnIcon = ("assets/svg/linkdln_icon.svg");
+  static String linkdelnIcon = ("assets/svg/linkdln_icon.svg");
   static String logoIcon = ("assets/svg/logo_icon.svg");
   static String medicalIcon = ("assets/svg/medical.svg");
   static String dummyPersonProf = ("assets/svg/person_Image.svg");
   static String searchIcon = ("assets/svg/search.svg");
   static String twitterIcon = ("assets/svg/twitter_icon.svg");
   static String homeIcon = ("assets/svg/home.svg");
+  static String whatsappText = ("assets/svg/whatsapp_text.svg");
   static String phoneIcon = ("assets/svg/phone.svg");
+  static String phoneLogo = ("assets/svg/phone_icon.svg");
   static String teamIcon = ("assets/svg/noun-consumer-6097082 1.svg");
   static String userIcon = ("assets/svg/user.svg");
   static String mailIcon = ("assets/svg/mail.svg");
@@ -45,6 +51,9 @@ class AppSvg {
 
   static String personIcon = ("assets/svg/user.svg");
   static String locationIcon = ("assets/svg/location-marker.svg");
+  static String welcomeImg1 = ("assets/svg/welcome_img_1.svg");
+  static String welcomeImg2 = ("assets/svg/welcome_img_2.svg");
+  static String welcomeImg3 = ("assets/svg/welcome_img_3.svg");
 
   // static String twitterIcon = ('assets/svg/twitter.svg');
 }

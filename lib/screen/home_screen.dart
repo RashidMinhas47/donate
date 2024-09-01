@@ -3,18 +3,18 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feedonations/Components/category_list.dart';
 import 'package:feedonations/Components/home_app_bar.dart';
-import 'package:feedonations/Components/profile_card.dart';
 import 'package:feedonations/Components/search_card_field.dart';
 import 'package:feedonations/Constant/constants.dart';
 import 'package:feedonations/Utilis/images.dart';
 import 'package:feedonations/screen/components/single_profile.dart';
-import 'package:feedonations/services/notification_services.dart';
+import 'package:feedonations/screen/receiver_profiles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../Components/profile_list.dart';
 import 'components/slider_widget.dart';
+import 'donor_profiles.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -151,7 +151,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          // iphone14plus2si5 (11:53)
           padding: const EdgeInsets.fromLTRB(0.39, 13.5, 0, 0),
           width: double.infinity,
           decoration: BoxDecoration(
@@ -163,23 +162,33 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const TopAppBar(),
-                SearchCardField(size: size),
+                // SearchCardField(size: size),
                 const CategoriesList(),
-                SingleProfile(
-                  title: "Receiver Profiles",
-                  stream1: fetchReceiverData(EDUCATION),
-                  stream2: fetchReceiverData(MEDICAL),
-                  stream3: fetchReceiverData(WISH),
-                  stream4: fetchReceiverData(MORE),
+                GestureDetector(
+                  onTap:(){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const ReceiverProfiles()));
+                  },
+                  child: SingleProfile(
+                    title: "Receiver Profiles",
+                    stream1: fetchReceiverData(EDUCATION),
+                    stream2: fetchReceiverData(MEDICAL),
+                    stream3: fetchReceiverData(WISH),
+                    stream4: fetchReceiverData(MORE),
+                  ),
                 ),
-                SingleProfile(
-                  title: "Donor Profiles",
-                  stream1: fetchDonorData(EDUCATION),
-                  stream2: fetchDonorData(MEDICAL),
-                  stream3: fetchDonorData(WISH),
-                  stream4: fetchDonorData(MORE),
+                GestureDetector(
+                  onTap:(){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const DonorProfiles()));
+                  },
+                  child: SingleProfile(
+                    title: "Donor Profiles",
+                    stream1: fetchDonorData(EDUCATION),
+                    stream2: fetchDonorData(MEDICAL),
+                    stream3: fetchDonorData(WISH),
+                    stream4: fetchDonorData(MORE),
+                  ),
                 ),
-                SliderWidget(),
+                const SliderWidget(),
               ],
             ),
           ),

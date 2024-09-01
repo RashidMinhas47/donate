@@ -43,28 +43,28 @@ class _OthersScreenState extends State<OthersScreen> {
       appBar: MyAppBar(
         title: "Others",
       ),
-      body: SclUniOthersBg(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            50.ph,
-            const SclUniTopArea(text: "Others Request"),
-            10.ph,
-            Expanded(
-              child: Center(
-                child: isEmpty
-                    ? Lottie.network(
-                  'https://assets1.lottiefiles.com/packages/lf20_0zomy8eb.json',
-                  width: 500,
-                  height: 300,
-                  fit: BoxFit.contain,
-                )
-                    : const DataFromFirebase(data: "Others"),
-              ),
-            )
-          ],
-        ),
-      )
+      // body: SclUniOthersBg(
+      //   child: Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: [
+      //       50.ph,
+      //       const SclUniTopArea(text: "Others Request"),
+      //       10.ph,
+      //       // Expanded(
+      //       //   child: Center(
+      //       //     child: isEmpty
+      //       //         ? Lottie.network(
+      //       //       'https://assets1.lottiefiles.com/packages/lf20_0zomy8eb.json',
+      //       //       width: 500,
+      //       //       height: 300,
+      //       //       fit: BoxFit.contain,
+      //       //     )
+      //       //         : const DataFromFirebase(data: "Others"),
+      //       //   ),
+      //       // )
+      //     ],
+      //   ),
+      // )
     );
   }
 }

@@ -32,33 +32,33 @@ class _AuthScreenState extends State<AuthScreen> {
       resizeToAvoidBottomInset: false,
       body: Container(
         // loginu3A (211:24)
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding:const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Color(0xffffffff),
+          color:const Color(0xffffffff),
           borderRadius: BorderRadius.circular(40 * 1),
         ),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                children: [
-                  Spacer(),
-                  Text(
-                    'Skip',
-                    textAlign: TextAlign.end,
-                    style: GoogleFonts.poppins(
-                      fontSize: 16 * 1,
-                      fontWeight: FontWeight.w600,
-                      height: 1.5 * 1 / 1,
-                      decoration: TextDecoration.underline,
-                      color: Color(0xff000000),
-                      decorationColor: Color(0xff000000),
-                    ),
-                  ),
-                ],
-              ),
+              // Row(
+              //   children: [
+              //     Spacer(),
+              //     Text(
+              //       'Skip',
+              //       textAlign: TextAlign.end,
+              //       style: GoogleFonts.poppins(
+              //         fontSize: 16 * 1,
+              //         fontWeight: FontWeight.w600,
+              //         height: 1.5 * 1 / 1,
+              //         decoration: TextDecoration.underline,
+              //         color: Color(0xff000000),
+              //         decorationColor: Color(0xff000000),
+              //       ),
+              //     ),
+              //   ],
+              // ),
               Container(
                 // ellipse124qmN (211:109)
                 margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),

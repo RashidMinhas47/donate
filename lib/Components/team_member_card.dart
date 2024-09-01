@@ -115,7 +115,7 @@ class TeamMemberCard extends StatelessWidget {
                         width: 23.09 * 1,
                         height: 23.09 * 1,
                         child: SvgPicture.asset(
-                          AppSvg.linkdlnIcon,
+                          AppSvg.linkdelnIcon,
                           width: 23.09 * 1,
                           height: 23.09 * 1,
                         ),
